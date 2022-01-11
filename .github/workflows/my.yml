@@ -10,9 +10,9 @@
 name: PVE-op云编码20220110
 
 on:
-  # push:
-    # branches: 
-      # - master
+  push:
+    branches: 
+      - master
   # schedule:
   #   - cron: 0 20 * * *
   release:
@@ -57,14 +57,12 @@ jobs:
           # ln -s /mnt/openwrt/staging_dir ./staging_dir
 
           df -h
-          
-      - name: 自定义插件主题。
+      - name: 自定义主题
         run: |
           cd package
           mkdir openwrt-packages
           cd openwrt-packages
           git clone https://github.com/sirpdboy/luci-theme-opentopd.git
-          git clone https://github.com/lisaac/luci-app-dockerman.git
           git clone https://github.com/fw876/helloworld.git
           git clone https://github.com/tty228/luci-app-serverchan.git
           git clone https://github.com/project-lede/luci-app-godproxy.git
@@ -145,28 +143,13 @@ jobs:
           EOF
           # 常用LuCI插件选择:
           cat >> .config <<EOF
-          CONFIG_PACKAGE_luci-app-wol=y
-          CONFIG_PACKAGE_luci-app-passwall=y
-          CONFIG_PACKAGE_luci-app-vlmcsd=y
-          CONFIG_PACKAGE_luci-app-unblockmusic=y
-          CONFIG_PACKAGE_luci-app-autoreboot=y
-          CONFIG_PACKAGE_luci-app-ramfree=y
-          CONFIG_PACKAGE_luci-app-firewall=y
-          CONFIG_PACKAGE_luci-app-filetransfer=y
-          CONFIG_PACKAGE_luci-app-nlbwmon=y
-          CONFIG_PACKAGE_luci-app-openclash=y
-          CONFIG_PACKAGE_luci-app-p910nd=y
-          CONFIG_PACKAGE_luci-app-watchcat=y
           CONFIG_PACKAGE_luci-app-dockerman=y
-          CONFIG_PACKAGE_helloworld=y
-          CONFIG_PACKAGE_luci-app-serverchan=y
+          CONFIG_PACKAGE_luci-app-helloworld=y
           CONFIG_PACKAGE_luci-app-godproxy=y
           EOF
           # LuCI主题:
           cat >> .config <<EOF
-          CONFIG_PACKAGE_luci-theme-argon=y
           CONFIG_PACKAGE_luci-theme-netgear=y
-          CONFIG_PACKAGE_luci-theme-rosy=y
           CONFIG_PACKAGE_luci-theme-opentopd=y
           EOF
           # 常用软件包:
