@@ -57,12 +57,12 @@ jobs:
           # ln -s /mnt/openwrt/staging_dir ./staging_dir
 
           df -h
+          
       - name: 自定义插件主题。
         run: |
           cd package
           mkdir openwrt-packages
           cd openwrt-packages
-          git clone https://github.com/rosywrt/luci-theme-rosy.git
           git clone https://github.com/sirpdboy/luci-theme-opentopd.git
           git clone https://github.com/lisaac/luci-app-dockerman.git
           git clone https://github.com/fw876/helloworld.git
